@@ -23,13 +23,8 @@ import { RxState } from '@rx-angular/state';
   ]
 })
 export class RxStateChildGetImperativeComponent {
-  _value = 0;
-  @Input()
-  set value(value: number) {
-    this._value = value;
-  }
-
   _class = 'red';
+
   @HostBinding('class')
   get class() {
     return this._class;
@@ -38,4 +33,6 @@ export class RxStateChildGetImperativeComponent {
   toggleClass() {
     this._class = this._class === 'red' ? 'green' : 'red';
   }
+
+  constructor() {}
 }

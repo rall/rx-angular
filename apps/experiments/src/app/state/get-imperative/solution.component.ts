@@ -27,15 +27,9 @@ import { RxState } from '@rx-angular/state';
   changeDetection: environment.changeDetection
 })
 export class RxStateParentGetImperativeSolutionComponent extends RxState<{
-  value: number;
   className: string;
 }> {
   className$ = this.select('className');
-
-  @Input()
-  set value(value: number) {
-    this.set({ value });
-  }
 
   @HostBinding('class')
   get className() {
