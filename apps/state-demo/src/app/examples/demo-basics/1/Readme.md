@@ -1,17 +1,5 @@
 # Implementing state, selections and UI interaction
 
-0. Implement reactive template helpers (push pipe)
-
-```html
-{{storeList$ | async}}}
-```
-
-0.1 finetune with strategies
-
-```html
-{{storeList$ | async: 'local'}}}
-```
-
 1. Implement RxState Service ComponentState by extending the RxState class.
 
 ```typescript
@@ -29,7 +17,7 @@ model$ = this.select();
 ```typescript
  constructor(...) {
   ...
-  this.setState(initComponentState);
+  this.set(initComponentState);
 }
 ```
 
@@ -39,7 +27,7 @@ model$ = this.select();
  @Input()
 set refreshInterval(refreshInterval: number) {
     if (refreshInterval > 100) {
-        this.setState({refreshInterval});
+        this.set({refreshInterval});
     }
 }
 ```

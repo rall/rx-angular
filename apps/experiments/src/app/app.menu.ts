@@ -10,13 +10,13 @@ import { MENU_ITEMS as RX_STATE_MENU_ITEMS } from './state/rx-state.menu';
 import { STRATEGIES_MENU } from './strategies/strategies.menu';
 
 export const MENU_ITEMS: MenuItem[] = [
+  ...RX_STATE_MENU_ITEMS,
+  ...STRATEGIES_MENU,
   ...DRAFT_MENU_ITEMS,
   ...CD_MENU_ITEMS,
   ...PUSH_MENU_ITEMS,
   ...LET_MENU_ITEMS,
   ...MIXED_MENU_ITEMS,
   ...PERFORMANCE_MENU_ITEMS,
-  ...CD_OPERATORS_MENU_ITEMS,
-  ...RX_STATE_MENU_ITEMS,
-  ...STRATEGIES_MENU
+  ...CD_OPERATORS_MENU_ITEMS
 ];

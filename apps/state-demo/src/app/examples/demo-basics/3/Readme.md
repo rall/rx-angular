@@ -40,7 +40,7 @@
 ```typescript
 ```
 
-- Refactor to use the vm connectState method
+- Refactor to use the vm connect method
 
 ```typescript
 ```
@@ -50,7 +50,7 @@
 ```typescript
 ```
 
-6. Refactor to use the vm.setState
+6. Refactor to use the vm.set
 
 ```typescript
 ```

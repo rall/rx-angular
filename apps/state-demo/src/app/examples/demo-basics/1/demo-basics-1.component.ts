@@ -6,18 +6,15 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import {
   fetchRepositoryList,
-  repositoryListFetchError,
-  repositoryListFetchSuccess,
   RepositoryListItem,
   selectRepositoryList
 } from '../../../data-access/github';
-import { interval, Observable, Subject, Subscription } from 'rxjs';
+import { interval, Subject, Subscription } from 'rxjs';
 import { DemoBasicsItem } from '../demo-basics-item.interface';
 
-import { ofType } from '@ngrx/effects';
 import { map, startWith, tap } from 'rxjs/operators';
 import { RxState } from '@rx-angular/state';
 
@@ -40,19 +37,17 @@ const initComponentState = {
     <h3>Demo Basic 1 - Setup and Retrieving State</h3>
     <small>Child rerenders: {{ rerenders() }}</small
     ><br />
-    <!-- CC Dominic Elm and his template streams :) -->
+
     <mat-expansion-panel
       (expandedChange)="listExpanded = $event; listExpandedChanges.next($event)"
       [expanded]="listExpanded"
     >
       <mat-expansion-panel-header class="list">
         <mat-progress-bar *ngIf="false" [mode]="'query'"></mat-progress-bar>
-        <mat-panel-title>
-          List
-        </mat-panel-title>
+        <mat-panel-title>List</mat-panel-title>
         <mat-panel-description>
-          <span
-            >{{ (storeList$ | async)?.length }} Repositories Updated every:
+          <span>
+            {{ (storeList$ | async)?.length }} Repositories Updated every:
             {{ _refreshInterval }} ms
           </span>
         </mat-panel-description>
@@ -103,8 +98,9 @@ const initComponentState = {
 // 1) implement RxState Service => extends RxState<ComponentState>
 export class DemoBasicsComponent1 implements OnInit, OnDestroy {
   intervalSubscription = new Subscription();
-  // UI interaction
+
   listExpandedChanges = new Subject<boolean>();
+
   storeList$ = this.store
     .select(selectRepositoryList)
     .pipe(map(this.parseListItems), startWith(initComponentState.list));
@@ -158,7 +154,6 @@ export class DemoBasicsComponent1 implements OnInit, OnDestroy {
     this.store.dispatch(fetchRepositoryList({}));
   }
 
-  // Map RepositoryListItem to ListItem
   parseListItems(l: RepositoryListItem[]): DemoBasicsItem[] {
     return l.map(({ id, name }) => ({ id, name }));
   }

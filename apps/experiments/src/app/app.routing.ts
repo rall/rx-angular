@@ -6,6 +6,18 @@ export const ROUTES: Routes = [
   {
     path: '',
     loadChildren: () =>
+      import('./state/rx-state.module').then(mod => mod.RxStateModule),
+    canActivate: [],
+    canActivateChild: []
+  },
+  {
+    path: 'strategies',
+    loadChildren: () =>
+      import('./strategies/strategies.module').then(m => m.StrategiesModule)
+  },
+  {
+    path: '',
+    loadChildren: () =>
       import('./draft/draft.module').then(mod => mod.DraftModule),
     canActivate: [],
     canActivateChild: []
@@ -55,17 +67,5 @@ export const ROUTES: Routes = [
       ),
     canActivate: [],
     canActivateChild: []
-  },
-  {
-    path: '',
-    loadChildren: () =>
-      import('./state/rx-state.module').then(mod => mod.RxStateModule),
-    canActivate: [],
-    canActivateChild: []
-  },
-  {
-    path: 'strategies',
-    loadChildren: () =>
-      import('./strategies/strategies.module').then(m => m.StrategiesModule)
   }
 ];

@@ -20,6 +20,18 @@ import { RxStateParentSelectionsComponent } from './selections/parent.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxStateChildSelectionsComponent } from './selections/child.component';
 import { RxStateParentSubscriptionLessComponent } from './subscription-less-interaction/parent.component';
+import { RxStateParentGetImperativeComponent } from './get-imperative/parent.component';
+import { RxStateParentGetImperativeSolutionComponent } from './get-imperative/solution.component';
+import { RxStateChildGetImperativeComponent } from './get-imperative/child.component';
+import { RxStateChildConnectReactiveComponent } from './connect-reactive/child.component';
+import { RxStateParentUpdateReactiveComponent } from './connect-reactive/parent.component';
+import { RxStateParentUpdateReactiveSolutionComponent } from './connect-reactive/solution.component';
+import { RxStateParentSelectReactiveComponent } from './select-reactive/parent.component';
+import { RxStateParentSelectReactiveSolutionComponent } from './select-reactive/solution.component';
+import { RxStateChildSelectReactiveComponent } from './select-reactive/child.component';
+import { RxStateParentUpdateImperativeComponent } from './set-imperative/parent.component';
+import { RxStateParentUpdateImperativeSolutionComponent } from './set-imperative/solution.component';
+import { RxStateChildSetImperativeComponent } from './set-imperative/child.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +40,19 @@ import { RxStateParentSubscriptionLessComponent } from './subscription-less-inte
     RxStateParentCompositionComponent,
     RxStateParentSelectionsComponent,
     RxStateParentSubscriptionComponent,
-    RxStateParentSubscriptionLessComponent
+    RxStateParentSubscriptionLessComponent,
+    RxStateParentUpdateImperativeComponent,
+    RxStateParentUpdateImperativeSolutionComponent,
+    RxStateChildSetImperativeComponent,
+    RxStateParentUpdateReactiveComponent,
+    RxStateChildConnectReactiveComponent,
+    RxStateParentUpdateReactiveSolutionComponent,
+    RxStateParentSelectReactiveComponent,
+    RxStateChildSelectReactiveComponent,
+    RxStateParentSelectReactiveSolutionComponent,
+    RxStateParentGetImperativeComponent,
+    RxStateParentGetImperativeSolutionComponent,
+    RxStateChildGetImperativeComponent
   ],
   imports: [
     CommonModule,

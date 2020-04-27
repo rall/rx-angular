@@ -20,6 +20,22 @@ export const MENU_ITEMS: MenuItem[] = [
       {
         link: 'connect',
         label: 'Connecting'
+      },
+      {
+        link: 'get-imperative',
+        label: 'Set Imperative'
+      },
+      {
+        link: 'connect-reactive',
+        label: 'Connect Reactively'
+      },
+      {
+        link: 'select-reactive',
+        label: 'Select Reactively'
+      },
+      {
+        link: 'set-imperative',
+        label: 'Get Imperative'
       }
     ]
   }
