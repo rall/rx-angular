@@ -32,6 +32,7 @@ import { RxStateChildSelectReactiveComponent } from './select-reactive/child.com
 import { RxStateParentUpdateImperativeComponent } from './set-imperative/parent.component';
 import { RxStateParentUpdateImperativeSolutionComponent } from './set-imperative/solution.component';
 import { RxStateChildSetImperativeComponent } from './set-imperative/child.component';
+import { RxStateParentGetImperativeSolution2Component } from './get-imperative/solution2.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { RxStateChildSetImperativeComponent } from './set-imperative/child.compo
     RxStateParentSelectReactiveSolutionComponent,
     RxStateParentGetImperativeComponent,
     RxStateParentGetImperativeSolutionComponent,
-    RxStateChildGetImperativeComponent
+    RxStateChildGetImperativeComponent,
+    RxStateParentGetImperativeSolution2Component
   ],
   imports: [
     CommonModule,

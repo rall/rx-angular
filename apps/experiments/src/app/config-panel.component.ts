@@ -28,6 +28,9 @@ import { RxState } from '@rx-angular/state';
         <mat-panel-title>
           <mat-chip-list class="config-display">
             <mat-chip>
+              <mat-icon>renders</mat-icon> &nbsp; {{ renders() }}</mat-chip
+            >
+            <mat-chip>
               <mat-icon disabled="zoneEnv === 'NgZone'">snooze</mat-icon>&nbsp;
               {{ zoneEnv }}</mat-chip
             >
@@ -97,6 +100,8 @@ export class ConfigPanelComponent
     expanded: boolean;
   }>
   implements AfterViewInit {
+  private numRenders = 0;
+
   detectChangeClick$ = defer(() =>
     fromEvent(document.getElementById('btnDetectChanges'), 'click')
   );
@@ -120,6 +125,10 @@ export class ConfigPanelComponent
     strategy: string;
   }> = this.configForm.valueChanges.pipe(startWith(this.configForm.value));
   strategy = () => this.coalesceConfigService.getConfig('strategy');
+
+  renders() {
+    return ++this.numRenders;
+  }
 
   constructor(
     private fb: FormBuilder,

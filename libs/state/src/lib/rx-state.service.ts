@@ -49,7 +49,7 @@ export class RxState<T extends object> implements OnDestroy, Subscribable<any> {
   }
 
   get(): T {
-    return this.accumulationObservable.state;
+    return { ...this.accumulationObservable.state };
   }
 
   /**

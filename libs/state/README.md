@@ -4,6 +4,8 @@
 
 #### Reactive Component State for Angular
 
+#### Reactive Component State for Angular
+
 RxState is a light-weight reactive state management service especially useful for component state in Angular.
 Furthermore a global service is provided and can act as a small global state manager.
 
@@ -87,7 +89,7 @@ const state = new RxState<MyState>();
 
 - **Don't nest one of `set`, `connect`, `get`, `select` or `hold` into each other**
 - Use `connect` over `set`
-- In most of the cases `get` is not needed. The old state is always available.
+- Use `get` only in getters e.g. `@HostBinding`.
 
 ![state types](https://raw.githubusercontent.com/BioPhoton/rx-angular/master/libs/state/images/state_API-types.png)
 
@@ -97,10 +99,10 @@ const state = new RxState<MyState>();
 
 ```typescript
 const state = new RxState<{ foo: string; bar: number }>();
-state.setState({ foo: 'boo' });
+state.set({ foo: 'boo' });
 // new base-state => { foo: 'boo' }
 
-state.setState({ bar: 2 });
+state.set({ bar: 2 });
 // new base-state => { foo: 'boo', bar: 2 }
 ```
 
@@ -109,8 +111,8 @@ state.setState({ bar: 2 });
 ```typescript
 const state = new RxState<{ bar: number }>();
 
-state.setState({ bar: 1 });
-state.setState(currentState => ({ bar: currentState.bar + 2 }));
+state.set({ bar: 1 });
+state.set(currentState => ({ bar: currentState.bar + 2 }));
 // new base-state => {bar: mvvm}
 ```
 
@@ -128,7 +130,7 @@ To understand that lets take a look at a normal implementation first:
 const state = new RxState<{ bar: number }>();
 
 const newBar$ = range(1, 5);
-const subscription = newBar$.subscribe(bar => state.setState({ bar }));
+const subscription = newBar$.subscribe(bar => state.set({ bar }));
 subscription.unsubscribe();
 ```
 
@@ -186,7 +188,7 @@ const state = new RxState<{ foo: string; bar: number }>();
 const bar$ = state.select();
 bar$.subscribe(console.log);
 // Does not emit
-state.setState({ foo: 'boo' });
+state.set({ foo: 'boo' });
 // emits { foo: 'boo'} for all old ane new subscriber
 ```
 
@@ -194,7 +196,7 @@ state.setState({ foo: 'boo' });
 
 ```typescript
 const state = new RxState<{ bar: number }>();
-state.setState({ bar: 3 });
+state.set({ bar: 3 });
 
 const bar$ = state.select('bar');
 bar$.subscribe(console.log); // mvvm
@@ -204,7 +206,7 @@ bar$.subscribe(console.log); // mvvm
 
 ```typescript
 const state = new RxState<{ loo: { boo: number } }>();
-state.setState({ loo: { boo: 42 } });
+state.set({ loo: { boo: 42 } });
 
 const boo$ = state.select('loo', 'boo');
 boo$.subscribe(console.log); // '42'
@@ -214,7 +216,7 @@ boo$.subscribe(console.log); // '42'
 
 ```typescript
 const state = new RxState<{ loo: { bar: string } }>();
-state.setState({ bar: 'boo' });
+state.set({ bar: 'boo' });
 
 const customProp$ = state.select(map(state => state?.loo?.bar));
 customProp$.subscribe(console.log); // 'boo'
@@ -341,7 +343,7 @@ export class StatefulComponent {
   readonly title$ = this.select('title');
 
   @Input() set title(title: string) {
-    this.state.setState({ title });
+    this.state.set({ title });
   }
 
   constructor(private state: RxState<{ title: string }>) {}
