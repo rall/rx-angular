@@ -104,9 +104,10 @@ export class LetDirective<U> implements OnDestroy {
   }
 
   @Input()
-  set rxLetStrategy(config: string | Observable<string> | undefined) {
-    if (config) {
-      this.RenderAware.nextStrategy(config);
+  set rxLetStrategy(strategy: string | Observable<string> | undefined) {
+    if (strategy) {
+      console.log('strategy', strategy);
+      this.RenderAware.nextStrategy(strategy);
     }
   }
 

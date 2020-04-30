@@ -12,8 +12,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'demo-basics',
-  templateUrl: './demo-basics.view-exact.html',
-  // templateUrl: './demo-basics.-exact.html',
+  templateUrl: './demo-basics.view.html',
   styles: [
     `
       .list .mat-expansion-panel-header {
@@ -35,7 +34,7 @@ import { Observable } from 'rxjs';
 })
 export class DemoBasicsComponent {
   /* START exact version */
-  strategy = 'local';
+  strategy = 'detach';
 
   listExpanded$ = this.vm.select('listExpanded');
   list$ = this.vm.select('list');
@@ -78,6 +77,8 @@ export class DemoBasicsComponent {
     );
     this.vm.connect('isPending', this.listService.loadingSignal$);
   }
+
+  noop() {}
 
   parseListItems(l: ListServerItem[]): DemoBasicsItem[] {
     return l.map(({ id, name }) => ({ id, name }));

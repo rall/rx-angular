@@ -1,10 +1,6 @@
 import { coalesce, CoalesceConfig } from '../operators';
 import { MonoTypeOperatorFunction, Observable } from 'rxjs';
-import {
-  ChangeDetectorRef,
-  ɵdetectChanges as detectChanges,
-  ɵmarkDirty as markDirty
-} from '@angular/core';
+import { ChangeDetectorRef, ɵmarkDirty as markDirty } from '@angular/core';
 import { isViewEngineIvy } from '../utils';
 import { getZoneUnPatchedPromiseDurationSelector } from './promise-duration-selector';
 import { tap } from 'rxjs/operators';
@@ -232,14 +228,8 @@ export function createDetachStrategy<T>(
   };
 
   function render() {
-    // @TODO ensure that detectChanges is behaves identical to ɵdetectChanges
-    // If yes, kick out ɵdetectChanges
     config.cdRef.reattach();
-    if (!IS_VIEW_ENGINE_IVY) {
-      config.cdRef.detectChanges();
-    } else {
-      detectChanges((config.cdRef as any).context);
-    }
+    config.cdRef.detectChanges();
     config.cdRef.detach();
   }
 

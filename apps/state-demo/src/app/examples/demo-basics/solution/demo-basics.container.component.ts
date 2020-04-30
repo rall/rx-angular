@@ -17,7 +17,8 @@ import { map } from 'rxjs/operators';
       />
     </mat-form-field>
 
-    <demo-basics [refreshIntervalO]="refreshInterval$"> </demo-basics>
+    <demo-basics [refreshInterval]="refreshInterval$ | push: 'detach'">
+    </demo-basics>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
