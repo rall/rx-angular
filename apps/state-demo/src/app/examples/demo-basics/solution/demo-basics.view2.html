@@ -1,6 +1,5 @@
 <h3>Final Example</h3>
 <small>Child re-renders: {{rerenders()}}</small><br />
-{{vm.baseModel$ | push:strategy | json}}
 <mat-expansion-panel
   class="list"
   *ngIf="vm.baseModel$ | async as bm"

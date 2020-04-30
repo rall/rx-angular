@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import {
   ListServerItem,
   ListService
@@ -8,10 +8,12 @@ import {
   DemoBasicsItem,
   DemoBasicsViewModelService
 } from './demo-basics.view-model.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'demo-basics',
-  templateUrl: './demo-basics.view.html',
+  templateUrl: './demo-basics.view-exact.html',
+  // templateUrl: './demo-basics.-exact.html',
   styles: [
     `
       .list .mat-expansion-panel-header {
@@ -32,11 +34,28 @@ import {
   providers: [DemoBasicsViewModelService]
 })
 export class DemoBasicsComponent {
+  /* START exact version */
+  strategy = 'local';
+
+  listExpanded$ = this.vm.select('listExpanded');
+  list$ = this.vm.select('list');
+  isPending$ = this.vm.select('isPending');
+  refreshInterval$ = this.vm.select('refreshInterval');
+  /* START exact version */
+
   @Input()
   set refreshInterval(refreshInterval: number) {
-    if (refreshInterval > 4000) {
+    if (refreshInterval > 4000 && refreshInterval < 10000) {
       this.vm.set({ refreshInterval });
     }
+  }
+
+  @Input()
+  set refreshIntervalO(refreshInterval$: Observable<number>) {
+    this.vm.connect(
+      'refreshInterval',
+      refreshInterval$.pipe(filter(ms => ms > 4000 && ms < 10000))
+    );
   }
 
   numRenders = 0;

@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app-component/app.component';
 import { ROUTES } from './app.routes';
 import { ListResourceModule } from './data-access/list-resource';
+import { TemplateModule } from '@rx-angular/template';
 
 export const materialModules = [
   BrowserAnimationsModule,

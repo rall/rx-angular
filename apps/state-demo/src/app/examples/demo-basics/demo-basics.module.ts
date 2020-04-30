@@ -22,6 +22,7 @@ import { DemoBasicsContainerComponent } from './solution/demo-basics.container.c
 import { DemoBasicsComponent } from './solution/demo-basics.component';
 import { DemoBasicsComponent1Solution } from './1/demo-basics-1.solution.component';
 import { DemoBasicsComponent2Solution } from './2/demo-basics-2.solution.component';
+import { TemplateModule } from '@rx-angular/template';
 
 export const ROUTES = [
   {
@@ -70,7 +71,12 @@ export const materialModules = [
 
 @NgModule({
   declarations: [DECLARATIONS],
-  imports: [CommonModule, materialModules, RouterModule.forChild(ROUTES)],
+  imports: [
+    CommonModule,
+    materialModules,
+    RouterModule.forChild(ROUTES),
+    TemplateModule
+  ],
   exports: [DECLARATIONS]
 })
 export class DemoBasicsModule {}

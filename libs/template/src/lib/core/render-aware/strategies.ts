@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { isViewEngineIvy } from '../utils';
 import { getZoneUnPatchedPromiseDurationSelector } from './promise-duration-selector';
+import { tap } from 'rxjs/operators';
 
 export interface StrategySelection<U> {
   [strategy: string]: RenderStrategy<U>;
@@ -179,13 +180,7 @@ export function createLocalStrategy<T>(
   };
 
   function render() {
-    // @TODO ensure that detectChanges is behaves identical to ɵdetectChanges
-    // If yes, kick out ɵdetectChanges
-    if (!IS_VIEW_ENGINE_IVY) {
-      config.cdRef.detectChanges();
-    } else {
-      detectChanges((config.cdRef as any).context);
-    }
+    config.cdRef.detectChanges();
   }
 
   const behaviour = () => (o$: Observable<T>): Observable<T> => {
