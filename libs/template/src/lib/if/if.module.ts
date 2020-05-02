@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RxLet } from './rx-let.directive';
+import { RxIf } from './if';
 
-const EXPORTED_DECLARATIONS = [RxLet];
+const EXPORTED_DECLARATIONS = [RxIf];
 
 @NgModule({
   declarations: EXPORTED_DECLARATIONS,
   exports: [EXPORTED_DECLARATIONS]
 })
-export class LetModule {}
+export class IfModule {}

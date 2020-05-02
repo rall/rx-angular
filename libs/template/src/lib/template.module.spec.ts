@@ -2,7 +2,7 @@ import { Component, Type, ViewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { from } from 'rxjs';
 
-import { LetDirective } from './let';
+import { RxLet } from './let';
 import { TemplateModule } from './template.module';
 
 function createHostComponent<T>(hostComponentType: Type<T>): T {
@@ -25,8 +25,8 @@ function createHostComponent<T>(hostComponentType: Type<T>): T {
   `
 })
 class TestLetDirectiveHostComponent {
-  @ViewChild(LetDirective)
-  letDirective: LetDirective<number>;
+  @ViewChild(RxLet)
+  letDirective: RxLet<number>;
 
   observableNumber$ = from([1, 2, 3]);
 }

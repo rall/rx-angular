@@ -16,7 +16,7 @@ import {
 } from 'rxjs';
 import { RenderAware, createRenderAware, getStrategies } from '../core';
 
-export interface LetViewContext<T> {
+export interface RxLetContext<T = unknown> {
   // to enable `let` syntax we have to use $implicit (var; let v = var)
   $implicit?: T;
   // to enable `as` syntax we have to assign the directives selector (var as v)
@@ -97,7 +97,7 @@ export interface LetViewContext<T> {
  * @publicApi
  */
 @Directive({ selector: '[rxLet]' })
-export class LetDirective<U> implements OnDestroy {
+export class RxLet<U> implements OnDestroy {
   @Input()
   set rxLet(potentialObservable: ObservableInput<U> | null | undefined) {
     this.RenderAware.nextPotentialObservable(potentialObservable);
@@ -112,7 +112,7 @@ export class LetDirective<U> implements OnDestroy {
 
   constructor(
     cdRef: ChangeDetectorRef,
-    private readonly templateRef: TemplateRef<LetViewContext<U>>,
+    private readonly templateRef: TemplateRef<RxLetContext<U>>,
     private readonly viewContainerRef: ViewContainerRef
   ) {
     this.RenderAware = createRenderAware<U>({
@@ -125,7 +125,7 @@ export class LetDirective<U> implements OnDestroy {
 
   static ngTemplateGuard_rxLet: 'binding';
   private embeddedView: any;
-  private readonly ViewContext: LetViewContext<U | undefined | null> = {
+  private readonly ViewContext: RxLetContext<U | undefined | null> = {
     $implicit: undefined,
     rxLet: undefined,
     $error: false,
@@ -171,9 +171,9 @@ export class LetDirective<U> implements OnDestroy {
   };
 
   static ngTemplateContextGuard<U>(
-    dir: LetDirective<U>,
+    dir: RxLet<U>,
     ctx: unknown | null | undefined
-  ): ctx is LetViewContext<U> {
+  ): ctx is RxLetContext<U> {
     return true;
   }
 
