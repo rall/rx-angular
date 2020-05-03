@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RxIf } from './if';
+import { RxIf } from './if.directive';
 
 const EXPORTED_DECLARATIONS = [RxIf];
 

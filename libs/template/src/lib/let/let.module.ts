@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RxLet } from './rx-let.directive';
+import { RxLet } from './let.directive';
 
 const EXPORTED_DECLARATIONS = [RxLet];
 
