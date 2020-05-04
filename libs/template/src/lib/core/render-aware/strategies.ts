@@ -1,4 +1,4 @@
-import { coalesce, CoalesceConfig } from '../operators';
+import { coalesce, CoalesceConfig } from '../rxjs/operators';
 import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import {
   ChangeDetectorRef,
